@@ -4,6 +4,8 @@ import 'package:stacked/stacked.dart';
 import './home_view_model.dart';
 
 class HomeView extends StatelessWidget {
+  const HomeView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
@@ -15,15 +17,18 @@ class HomeView extends StatelessWidget {
         BuildContext context,
         HomeViewModel model,
         Widget? child,
-      ) {
-        return Scaffold(
-          body: Center(
-            child: Text(
-              'HomeView',
-            ),
+      ) =>
+          Scaffold(
+        body: Center(
+          child: Text(
+            'HomeView',
           ),
-        );
-      },
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => model.getListVolumes(),
+          child: Icon(Icons.add),
+        ),
+      ),
     );
   }
 }
