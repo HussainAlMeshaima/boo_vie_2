@@ -292,7 +292,7 @@ class VolumeInfo {
         subtitle: map['subtitle'] ?? '',
         authors: map['authors'] == null ? [] : List<String>.from(map['authors']),
         publishedDate: map['publishedDate'] ?? '',
-        industryIdentifiers: List<IndustryIdentifier>.from(
+        industryIdentifiers: map['industryIdentifiers'] == null ? [] : List<IndustryIdentifier>.from(
             map['industryIdentifiers']?.map((x) => IndustryIdentifier.fromMap(x))),
         readingModes: map['readingModes'] == null
             ? ReadingModes()

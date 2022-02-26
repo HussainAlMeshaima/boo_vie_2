@@ -3,30 +3,25 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 class ListVolumesErrorModel {
-  final Error error;
+  final Error? error;
   ListVolumesErrorModel({
-    required this.error,
+    this.error,
   });
 
   ListVolumesErrorModel copyWith({
     Error? error,
-  }) {
-    return ListVolumesErrorModel(
-      error: error ?? this.error,
-    );
-  }
+  }) =>
+      ListVolumesErrorModel(
+        error: error ?? this.error,
+      );
 
-  Map<String, dynamic> toMap() {
-    return {
-      'error': error.toMap(),
-    };
-  }
+  Map<String, dynamic> toMap() => {
+        'error': error?.toMap(),
+      };
 
-  factory ListVolumesErrorModel.fromMap(Map<String, dynamic> map) {
-    return ListVolumesErrorModel(
-      error: Error.fromMap(map['error']),
-    );
-  }
+  factory ListVolumesErrorModel.fromMap(Map<String, dynamic> map) => ListVolumesErrorModel(
+        error: map['error'] == null ? Error() : Error.fromMap(map['error']),
+      );
 
   String toJson() => json.encode(toMap());
 
@@ -53,22 +48,21 @@ class Error {
   final List<Error>? errors;
 
   Error({
-    required this.code,
-    required this.message,
-    required this.errors,
+    this.code,
+    this.message,
+    this.errors,
   });
 
   Error copyWith({
     int? code,
     String? message,
     List<Error>? errors,
-  }) {
-    return Error(
-      code: code ?? this.code,
-      message: message ?? this.message,
-      errors: errors ?? this.errors,
-    );
-  }
+  }) =>
+      Error(
+        code: code ?? this.code,
+        message: message ?? this.message,
+        errors: errors ?? this.errors,
+      );
 
   Map<String, dynamic> toMap() {
     List<Error>? newListOfErrors = errors;
@@ -80,13 +74,13 @@ class Error {
     };
   }
 
-  factory Error.fromMap(Map<String, dynamic> map) {
-    return Error(
-      code: map['code']?.toInt() ?? 0,
-      message: map['message'] ?? '',
-      errors: List<Error>.from(map['errors']?.map((x) => Error.fromMap(x))),
-    );
-  }
+  factory Error.fromMap(Map<String, dynamic> map) => Error(
+        code: map['code']?.toInt() ?? 0,
+        message: map['message'] ?? '',
+        errors: map['errors'] == null
+            ? []
+            : List<Error>.from(map['errors']?.map((x) => Error.fromMap(x))),
+      );
 
   String toJson() => json.encode(toMap());
 
@@ -129,15 +123,14 @@ class Errors {
     String? reason,
     String? location,
     String? locationType,
-  }) {
-    return Errors(
-      message: message ?? this.message,
-      domain: domain ?? this.domain,
-      reason: reason ?? this.reason,
-      location: location ?? this.location,
-      locationType: locationType ?? this.locationType,
-    );
-  }
+  }) =>
+      Errors(
+        message: message ?? this.message,
+        domain: domain ?? this.domain,
+        reason: reason ?? this.reason,
+        location: location ?? this.location,
+        locationType: locationType ?? this.locationType,
+      );
 
   Map<String, dynamic> toMap() {
     return {
@@ -149,15 +142,13 @@ class Errors {
     };
   }
 
-  factory Errors.fromMap(Map<String, dynamic> map) {
-    return Errors(
-      message: map['message'] ?? '',
-      domain: map['domain'] ?? '',
-      reason: map['reason'] ?? '',
-      location: map['location'] ?? '',
-      locationType: map['locationType'] ?? '',
-    );
-  }
+  factory Errors.fromMap(Map<String, dynamic> map) => Errors(
+        message: map['message'] ?? '',
+        domain: map['domain'] ?? '',
+        reason: map['reason'] ?? '',
+        location: map['location'] ?? '',
+        locationType: map['locationType'] ?? '',
+      );
 
   String toJson() => json.encode(toMap());
 
@@ -181,11 +172,10 @@ class Errors {
   }
 
   @override
-  int get hashCode {
-    return message.hashCode ^
-        domain.hashCode ^
-        reason.hashCode ^
-        location.hashCode ^
-        locationType.hashCode;
-  }
+  int get hashCode =>
+      message.hashCode ^
+      domain.hashCode ^
+      reason.hashCode ^
+      location.hashCode ^
+      locationType.hashCode;
 }
