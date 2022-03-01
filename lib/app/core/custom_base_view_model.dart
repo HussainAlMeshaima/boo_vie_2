@@ -7,11 +7,7 @@ import 'package:stacked/stacked.dart';
 abstract class CustomBaseViewModel extends BaseViewModel {
   final RouterService _routerService = locator<RouterService>();
 
-  void goBack() {
-    _routerService.router.pop();
-  }
+  void pop() => _routerService.router.pop();
 
-  void removeFocus() {
-    FocusManager.instance.primaryFocus!.unfocus();
-  }
+  void removeFocus() => FocusManager.instance.primaryFocus!.unfocus();
 }
