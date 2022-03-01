@@ -10,7 +10,7 @@ class HomeViewModel extends CustomBaseViewModel {
   Future<void> init() async {}
 
   Future<void> getListVolumes() async {
-    dynamic books = await _bookService.getListVolumes('batman');
+    dynamic books = await _bookService.getListVolumes(q:'batman');
     log(books.toString());
   }
 }
