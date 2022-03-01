@@ -307,7 +307,7 @@ class VolumeInfo {
             ? PanelizationSummary()
             : PanelizationSummary.fromMap(map['panelizationSummary']),
         imageLinks:
-            map['categories'] == null ? ImageLinks() : ImageLinks.fromMap(map['imageLinks']),
+            map['imageLinks'] == null ? ImageLinks() : ImageLinks.fromMap(map['imageLinks']),
         language: map['language'] ?? '',
         previewLink: map['previewLink'] ?? '',
         infoLink: map['infoLink'] ?? '',
