@@ -1,4 +1,4 @@
-import 'package:boo_vie/app/models/books/list_volumes/list_volumes_error_model.dart';
+import 'package:boo_vie/app/models/books/book_volume/book_volume.dart';
 import 'package:boo_vie/app/models/books/list_volumes/list_volumes_model.dart';
 import 'package:boo_vie/app/services/book_service.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -6,35 +6,60 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   BookService _bookService = BookService();
 
-  group('test getListVolumes function', () {
-    test('it should bring list of books when searching for "eggs" or "batman"', () async {
-      ListVolumesModel _eggsBooks = await _bookService.getListVolumes('eggs');
-      ListVolumesModel _batmanBooks = await _bookService.getListVolumes('batman');
+  group('test getListVolumes function ---> ', () {
+    test('it should bring list of books when searching for "eggs"', () async {
+      ListVolumesModel _books = await _bookService.getListVolumes(q: 'eggs');
 
-      bool _isTotalEggsBookItemsGraterThanZero = (_eggsBooks.totalItems ?? -1) > 0;
-      bool _isTotalBatmanBookItemsGraterThanZero = (_batmanBooks.totalItems ?? -1) > 0;
+      expect(_books.kind, isNotNull);
+      expect(_books.totalItems, isNotNull);
+      expect(_books.items, isNotNull);
 
-      bool _isEggItemItemsGraterThanZero = (_eggsBooks.items?.length ?? -1) > 0;
-      bool _isBatmanBookItemsGraterThanZero = (_eggsBooks.items?.length ?? -1) > 0;
-
-      expect(_eggsBooks.kind, isNotNull);
-      expect(_batmanBooks.kind, isNotNull);
-
-      expect(_eggsBooks.totalItems, isNotNull);
-      expect(_eggsBooks.items, isNotNull);
-
-      expect((_isTotalEggsBookItemsGraterThanZero && _isEggItemItemsGraterThanZero), true);
-      expect((_isTotalBatmanBookItemsGraterThanZero && _isBatmanBookItemsGraterThanZero), true);
+      expect(((_books.totalItems ?? -1) > 0), true);
     });
 
-    test('it should NOT bring list of books when searching for "" ', () async {
-      ListVolumesErrorModel _books = await _bookService.getListVolumes('');
+    test('it should bring list of books when searching for "batman"', () async {
+      ListVolumesModel _books = await _bookService.getListVolumes(q: 'batman');
 
-      bool _hasErrorMessage = _books.error?.message != null;
-      bool _notSuccess = _books.error?.code != 200;
+      expect(_books.kind, isNotNull);
+      expect(_books.totalItems, isNotNull);
+      expect(_books.items, isNotNull);
+      expect(((_books.totalItems ?? -1) > 0), true);
+    });
 
-      expect(_hasErrorMessage, true);
-      expect(_notSuccess, true);
+    test('it should not bring list of books when searching for "" ', () async {
+      dynamic _books = await _bookService.getListVolumes(q: '');
+
+      expect(_books?['error']?['message'] != null, true);
+      expect(_books?['error']?['message'], "Missing query.");
+      expect(_books['error']?['code'] != 200, true);
+    });
+  });
+
+  group('test getBook  ---> ', () {
+    test("it should bring the book with id '01lMAAAAYAAJ'", () async {
+      const String _id = '01lMAAAAYAAJ';
+      BookVolume book = await _bookService.getBook(volumeId: _id);
+
+      expect(book != null, true);
+      expect(book != BookVolume(), true);
+      expect(book.id != null, true);
+      expect(book.id == _id, true);
+    });
+
+    test("it should not bring the book with id '01lMAasdasdqweqw'", () async {
+      const String _id = '01lMAasdasdqweqw';
+      dynamic book = await _bookService.getBook(volumeId: _id);
+
+      expect(book?['error'] != null, true);
+      expect(book?['error']?['code'] != 200, true);
+    });
+
+    test("it should not bring the book with id ''", () async {
+      const String _id = '';
+      dynamic book = await _bookService.getBook(volumeId: _id);
+
+      expect(book?['error'] != null, true);
+      expect(book?['error']?['code'] != 200, true);
     });
   });
 }
