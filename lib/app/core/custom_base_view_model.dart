@@ -9,5 +9,5 @@ abstract class CustomBaseViewModel extends BaseViewModel {
 
   void pop() => _routerService.router.pop();
 
-  void removeFocus() => FocusManager.instance.primaryFocus!.unfocus();
+  void removeFocus() => FocusManager.instance.primaryFocus?.unfocus();
 }
