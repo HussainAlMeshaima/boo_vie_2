@@ -25,7 +25,7 @@ class BreakpointService {
     required this.window,
   });
 
-  /// Following Material Design Guidlines [https://material.io/design/layout/responsive-layout-grid.html#grid-behavior]
+  /// Following Material Design Guidelines [https://material.io/design/layout/responsive-layout-grid.html#grid-behavior]
   ///
   /// Use a layout builder to get [BoxConstraints]
   factory BreakpointService.fromConstraints(BoxConstraints constraints) {
@@ -43,7 +43,7 @@ class BreakpointService {
     return _calcBreakpoint(orientation, _width);
   }
 
-  /// Following Material Design Guidlines [https://material.io/design/layout/responsive-layout-grid.html#grid-behavior]
+  /// Following Material Design Guidelines [https://material.io/design/layout/responsive-layout-grid.html#grid-behavior]
   ///
   /// Uses [BuildContext] and [MediaQuery] to calculate the device breakpoint
   ///
