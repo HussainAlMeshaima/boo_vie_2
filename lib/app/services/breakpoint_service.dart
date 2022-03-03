@@ -5,10 +5,10 @@ library breakpoint;
 import 'package:flutter/material.dart';
 
 class BreakpointService {
-  /// xsmall, small, medium, large, xlarge
+  /// xSmall, small, medium, large, xLarge
   final WindowSize window;
 
-  /// smallHandset, mediumHandset, largeHandset, smallTablet, largeTablet, deskto
+  /// smallHandset, mediumHandset, largeHandset, smallTablet, largeTablet, desktop
   final LayoutClass device;
 
   /// Number of columns for content
@@ -17,7 +17,7 @@ class BreakpointService {
   /// Spacing between columns
   final double gutters;
 
-  /// Following Material Design Guidlines [https://material.io/design/layout/responsive-layout-grid.html#grid-behavior]
+  /// Following Material Design Guidelines [https://material.io/design/layout/responsive-layout-grid.html#grid-behavior]
   const BreakpointService({
     required this.columns,
     required this.device,
@@ -144,7 +144,7 @@ class BreakpointService {
         columns: 4,
         gutters: 16,
         device: LayoutClass.largeHandset,
-        window: WindowSize.xsmall,
+        window: WindowSize.xSmall,
       );
     }
     if (_width >= 400) {
@@ -152,7 +152,7 @@ class BreakpointService {
         columns: 4,
         gutters: 16,
         device: LayoutClass.largeHandset,
-        window: WindowSize.xsmall,
+        window: WindowSize.xSmall,
       );
     }
     if (_width >= 360) {
@@ -160,14 +160,14 @@ class BreakpointService {
         columns: 4,
         gutters: 16,
         device: LayoutClass.mediumHandset,
-        window: WindowSize.xsmall,
+        window: WindowSize.xSmall,
       );
     }
     return const BreakpointService(
       columns: 4,
       gutters: 16,
       device: LayoutClass.smallHandset,
-      window: WindowSize.xsmall,
+      window: WindowSize.xSmall,
     );
   }
 
@@ -178,7 +178,6 @@ class BreakpointService {
 }
 
 class BreakpointBuilder extends StatelessWidget {
-  /// Wraps layout builder and returns a breakpoint
   const BreakpointBuilder({
     required this.builder,
     this.context,
@@ -186,17 +185,14 @@ class BreakpointBuilder extends StatelessWidget {
   final Widget Function(BuildContext, BreakpointService) builder;
   final BuildContext? context;
   @override
-  Widget build(BuildContext root) {
-    final _context = context ?? root;
-    return LayoutBuilder(
-      builder: (_context, constraints) =>
-          builder(_context, BreakpointService.fromConstraints(constraints)),
-    );
-  }
+  Widget build(BuildContext context) => LayoutBuilder(
+        builder: (_context, constraints) =>
+            builder(_context, BreakpointService.fromConstraints(constraints)),
+      );
 }
 
 enum WindowSize {
-  xsmall,
+  xSmall,
   small,
   medium,
   large,
