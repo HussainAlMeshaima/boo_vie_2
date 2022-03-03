@@ -13,12 +13,8 @@ class BooVieApp extends StatelessWidget {
       title: "BooVie",
       routeInformationParser: _routerService.router.defaultRouteParser(),
       routerDelegate: _routerService.router.delegate(),
-      theme: ThemeData(
-        brightness: Brightness.light,
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-      ),
+      theme: ThemeData(brightness: Brightness.light),
+      darkTheme: ThemeData(brightness: Brightness.dark),
     );
   }
 }
