@@ -1,8 +1,8 @@
 import 'package:boo_vie/app/theme/colors.dart';
 import 'package:flutter/material.dart';
 
-class ForgotPAsswordTextButton extends StatelessWidget {
-  const ForgotPAsswordTextButton({Key? key}) : super(key: key);
+class ForgotPasswordTextButton extends StatelessWidget {
+  const ForgotPasswordTextButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Align(

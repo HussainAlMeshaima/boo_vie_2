@@ -14,6 +14,6 @@ class StartupViewModel extends CustomBaseViewModel {
   }
 
   Future navigateToHomeView() async {
-    await _routerService.router.push(const HomeRoute());
+    await _routerService.router.push(const LoginRoute(),);
   }
 }

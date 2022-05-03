@@ -14,6 +14,7 @@ dependencies:
   injectable: ^1.4.1
   logger: ^1.0.0
   stacked: ^2.1.7
+  flutter_svg: ^1.0.3
 
 dev_dependencies:
   auto_route_generator: ^3.2.3
@@ -32,8 +33,8 @@ flutter:
   uses-material-design: true
 
 # Assets Example
-#  assets:
-#    - assets/images/
+  assets:
+    - assets/booVie.svg
 #
 # Fonts Example
 #  fonts:

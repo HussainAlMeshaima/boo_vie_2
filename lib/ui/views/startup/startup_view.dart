@@ -1,3 +1,4 @@
+import 'package:boo_vie/ui/widgets/logo_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -13,29 +14,19 @@ class _StartupViewState extends State<StartupView> {
   Widget build(BuildContext context) {
     return ViewModelBuilder<StartupViewModel>.reactive(
       viewModelBuilder: () => StartupViewModel(),
-      onModelReady: (StartupViewModel model) async {
-        await model.init();
-      },
-      builder: (
-        BuildContext context,
-        StartupViewModel model,
-        Widget? child,
-      ) {
-        return Scaffold(
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                // TODO(yazeed): Put Your Logo Here :)
-
-                const SizedBox(height: 15),
-                CircularProgressIndicator(),
-              ],
-            ),
+      onModelReady: (StartupViewModel model) async => await model.init(),
+      builder: (BuildContext context, StartupViewModel model, Widget? child) => Scaffold(
+        body: Center(
+          child: ListView(
+            children: const <Widget>[
+              SizedBox(
+                height: 700,
+              ),
+              BooVieLogoWidget(height: 0, key: Key("booViLogo")),
+            ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

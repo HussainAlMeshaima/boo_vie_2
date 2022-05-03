@@ -9,9 +9,9 @@ export './router.gr.dart';
 @AdaptiveAutoRouter(
   replaceInRouteName: "View,Route",
   routes: <AutoRoute>[
-    AdaptiveRoute(page: StartupView),
+    AdaptiveRoute(page: StartupView, initial: true),
+    AdaptiveRoute(page: LoginView),
     AdaptiveRoute(page: HomeView),
-    AdaptiveRoute(page: LoginView, initial: true),
   ],
 )
 class $BooVieRouter {}
